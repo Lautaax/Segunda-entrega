@@ -69,17 +69,17 @@ router.get("/:pid", async (req, res) => {
 router.post("/", uploader.array("thumbnails"), async (req, res) => {
   let newProduct = req.body;
 
-  if (!newProduct.title || !newProduct.description || !newProduct.code || !newProduct.price || !newProduct.stock || !newProduct.category) {
+  if (!newProduct.title || !newProduct.description || !newProduct.code || !newProduct.price || !newProduct.stock ) {
     return res.status(400).send({
       status: "error",
-      message: { error: "All fields are mandatory" },
+      message: { error: "Todos los campos son obligatorios" },
     });
   }
 
   if (newProduct.id || newProduct.id == 0) {
     return res.status(400).send({
       status: "error",
-      message: { error: "Product ID cannot be assigned" },
+      message: { error: "Producto sin ID Asignado" },
     });
   }
 
@@ -88,7 +88,7 @@ router.post("/", uploader.array("thumbnails"), async (req, res) => {
   if (!req.files && !newProduct.thumbnails) {
     return res.status(400).send({
       status: "error",
-      message: { error: `Thumbnails could not be saved` },
+      message: { error: `No se pudieron guardar las miniaturas` },
     });
   }
 
@@ -98,7 +98,7 @@ router.post("/", uploader.array("thumbnails"), async (req, res) => {
   if (productIndex !== -1) {
     return res.status(400).send({
       status: "error",
-      message: { error: `Product with code ${newProduct.code} already exists` },
+      message: { error: `Producto con el codigo ${newProduct.code} ya existe` },
     });
   }
 
@@ -107,7 +107,7 @@ router.post("/", uploader.array("thumbnails"), async (req, res) => {
   return res.status(201).send({
     status: "success",
     message: {
-      success: `Product ${newProduct.title} added successfully`,
+      success: `Producto ${newProduct.title} Agregado correctamente`,
       id: `${newProduct.id}`,
     },
   });
@@ -125,21 +125,21 @@ router.put("/:pid", async (req, res) => {
   if (!updateProd) {
     return res.status(400).send({
       status: "error",
-      message: { error: "Incomplete values" },
+      message: { error: "Valores incompletos" },
     });
   }
   
   if (isNaN(updatePos) || updatePos <= 0) {
     return res.status(400).send({
       status: "error",
-      message: { error: `${updatePos} is not a valid position` },
+      message: { error: `${updatePos} Posicion invalida` },
     });
   }
   
   if (updateProd.id) {
     return res.status(400).send({
       status: "error",
-      message: { error: "Product ID cannot be changed" },
+      message: { error: "El ID del producto no se puede cambiar" },
     });
   }
   
@@ -148,13 +148,13 @@ router.put("/:pid", async (req, res) => {
   if (prodUpdatePos === -1) {
     return res.status(404).send({
       status: "error",
-      message: { error: `No product found with ID ${updatePos}` },
+      message: { error: `No se encontró ningún producto con ID ${updatePos}` },
     });
   }
   
   return res.status(200).send({
     status: "success",
-    message: { update: `Product with ID ${updatePos} was successfully updated to ${updateProd.title}` },
+    message: { update: `Producto con ID ${updatePos} se actualizó con éxito a ${updateProd.title}` },
   });
 });
 
@@ -168,14 +168,14 @@ router.delete("/:pid", async (req, res) => {
   if (!deleteID) {
     return res.status(400).send({
       status: "error",
-      message: { error: "Incomplete values" },
+      message: { error: "Valores Incompletos" },
     });
   }
   
   if (isNaN(deleteID) || deleteID <= 0) {
     return res.status(400).send({
       status: "error",
-      message: { error: `${deleteID} is not a valid position` },
+      message: { error: `${deleteID} Posicion invalida` },
     });
   }
   
@@ -184,14 +184,14 @@ router.delete("/:pid", async (req, res) => {
   if (prodDeletePos === -1) {
     return res.status(404).send({
       status: "error",
-      message: { error: `No product found with ID ${deleteID}` },
+      message: { error: `No se encontró ningún producto con ID ${deleteID}` },
     });
   }
   
   return res.status(200).send({
     status: "success",
     message: {
-      delete: `The product with ID ${deleteID} was successfully deleted`,
+      delete: `Producto con ID ${deleteID} se elimino con exito`,
     },
   });
 });

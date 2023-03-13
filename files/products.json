@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"status": true,
+		"title": "Perro",
+		"description": "gatuno",
+		"code": "45632112",
+		"price": "12",
+		"stock": "2",
+		"thumbnails": [
+			"C:\\Users\\lauta\\Documents\\GitHub\\Segunda entrega\\src\\public\\images\\1678728168858-Nueva imagen de mapa de bits.bmp"
+		]
+	}
+]
