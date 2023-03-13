@@ -17,14 +17,14 @@ router.get("/:cid", async (req, res) => {
   if (isNaN(cid) || cid <= 0) {
     return res.status(400).send({
       status: "error",
-      message: { error: `Cart ID ${cid} is not a valid value` },
+      message: { error: `Item ${cid} es invalido el valor` },
     });
   }
 
   if (filteredCart == 0) {
     return res.status(404).send({
       status: "error",
-      message: { error: `Cart with ID ${cid} was not found` },
+      message: { error: `El item ID ${cid} No existe` },
     });
   }
 
@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
   return res.status(201).send({
     status: "success",
     message: {
-      success: "New cart created successfully.",
+      success: "Nuevo Item fue creado.",
     },
   });
 });
@@ -63,28 +63,28 @@ router.post("/:cid/product/:pid", async (req, res) => {
   if (cartIdFound === -1) {
     return res.status(400).send({
       status: "error",
-      message: { error: `Cart with ID ${cartId} was not found` },
+      message: { error: `El item id ${cartId} no existe` },
     });
   }
 
   if (productIdFound === -1) {
     return res.status(400).send({
       status: "error",
-      message: { error: `Product with ID ${productId} was not found` },
+      message: { error: `El Producto id ${productId} no existe` },
     });
   }
 
   if (isNaN(cartId) || cartId <= 0) {
     return res.status(400).send({
       status: "error",
-      message: { error: `Cart ID ${cartId} is not a valid value` },
+      message: { error: `Carrito id ${cartId} No existe el valor` },
     });
   }
 
   if (isNaN(productId) || productId <= 0) {
     return res.status(400).send({
       status: "error",
-      message: { error: `Product ID ${productId} is not a valid value` },
+      message: { error: `Carrito id ${productId} Tiene un valor invalido` },
     });
   }
 
@@ -93,7 +93,7 @@ router.post("/:cid/product/:pid", async (req, res) => {
   return res.status(201).send({
     status: "success",
     message: {
-      success: `Successfully added product with ID ${productId} to cart with ID ${cartId}`,
+      success: `Producto agregado exitosamente con ID ${productId} al carrito con ID ${cartId}`,
     },
   });
 });
