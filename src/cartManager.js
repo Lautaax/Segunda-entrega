@@ -72,7 +72,7 @@ export default class CartManager {
       const carts = await this.getCarts();
 
       const cartIdFound = carts.findIndex((cart) => cart.id === parseInt(cartId));
-      const productIdFound = carts[cartIdFound].products.findIndex((prod) => prod.id === parseInt(productId)) // Searches for a product ID inside a Cart ID.
+      const productIdFound = carts[cartIdFound].products.findIndex((prod) => prod.id === parseInt(productId))
 
       if (cartIdFound !== -1) {
         if ( productIdFound !== -1 ) {

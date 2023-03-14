@@ -5,9 +5,7 @@ import { uploader } from "../utils.js";
 const productManager = new ProductManager();
 const router = Router();
 
-/////////////////////////
-///////GET METHODS///////
-/////////////////////////
+//GET
 
 router.get("/", async (req, res) => {
   const limit = req.query.limit;
@@ -62,9 +60,7 @@ router.get("/:pid", async (req, res) => {
   });
 });
 
-/////////////////////////
-///////POST METHOD///////
-/////////////////////////
+//post
 
 router.post("/", uploader.array("thumbnails"), async (req, res) => {
   let newProduct = req.body;
@@ -114,9 +110,7 @@ router.post("/", uploader.array("thumbnails"), async (req, res) => {
 });
 
 
-/////////////////////////
-///////PUT METHOD////////
-/////////////////////////
+//Metodo Put
 
 router.put("/:pid", async (req, res) => {
   const updateProd = req.body;
